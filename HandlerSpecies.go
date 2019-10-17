@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// HandlerSpecies Handler for species GET
 func HandlerSpecies(w http.ResponseWriter, r *http.Request) {
 	parts := strings.Split(r.URL.Path, "/")
 	if len(parts) != 3 {
@@ -13,6 +14,8 @@ func HandlerSpecies(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Expecting format .../species", status)
 		return
 	}
-	name := parts[2]
+
+	speciesAPI := ""
+
 	fmt.Fprintln(w, parts)
 }
