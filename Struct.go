@@ -4,4 +4,5 @@ package assignment1
 type CountryJSON struct {
 	Name       string `json:"name"`
 	Alpha2Code string `json:"alpha2Code"`
+	Flag       string `json:"flag"`
 }
