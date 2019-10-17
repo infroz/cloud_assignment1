@@ -20,6 +20,7 @@ func main() {
 
 	http.HandleFunc("/", assignment1.HandlerNil)
 	http.HandleFunc("/country/", assignment1.HandlerCountry)
+	http.HandleFunc("/species/", assignment1.HandlerSpecies)
 
 	fmt.Println("Listening on port " + port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
