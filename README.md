@@ -1,6 +1,6 @@
-## Assignment 1 for Cloud Technologies at NTNU Gjøvik
+# Assignment 1 for Cloud Technologies at NTNU Gjøvik
 
-# Hvordan vi jobber
+## Hvordan vi jobber
 
 Master branchen er låst fra å pushe direkte til denne. Jeg har satt det opp slik at vi oppretter separate brancher for hver oppgave, og merger denne inn via pull request - da er det også anledning for å diskutere og kommentere kodeendringer i pull requesten, før de merges inn i masterbranchen. Slik kan vi passe på at vi ikke roter ting til selv om vi jobber parallellt, samt at vi kan gjøre koden bedre gjennom å sjekke hverandre.
 
@@ -17,17 +17,6 @@ Commit ofte, så kan man lettere gå tilbake dersom noe har fucka seg. For å st
 ```git checkout -- .```
 
 Legg merke til punktumet. Må gjøres i root-mappen.
-
-
-## Legge til nye filer
-
-Skal du legge inn nye filer i prosjektet, er det noen ting å passe på:
-
-1. Legg til filen under `target_sources` i `CMakeLists.txt`, dersom den er en kildefil. Dersom det er et bibliotek som bare inkluderes, som med `ListTool2B`, legges filen i mappen `include`, og filnavnet med relativ sti (e.g. "include/FILNAVN") legges til under `target_sources`. Dersom den nye filen ikke er en kildefil, men f.eks. generert av visual studio, cmake eller annet, ikke tenk på dette steget, men gå videre.
-2. Legg til filen i git ved `git add filnavn`
-3. Husk å committe endringen, siden `git add` ikke gjør dette selv
-
-Dersom du skulle få problemer med å kompilere programmet etter å ha lagt inn en ny fil, forsøk å gjøre "rebuild all" fra "CMake" menyen i visual studio.
 
 
 ## Opplasting av lokal branch
