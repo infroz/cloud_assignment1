@@ -19,9 +19,9 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, country)
 
-	countryAPI := "https://restcountries.eu/rest/v2/name/"
+	countryAPI := "https://restcountries.eu/rest/v2/alpha/"
 	fmt.Println("Running GET: " + countryAPI + country)
-	req, err := http.NewRequest(http.MethodGet, countryAPI+country, nil)
+	req, err := http.NewRequest(http.MethodGet, countryAPI+country+"?fields=name;alpha2Code", nil)
 	if err != nil {
 		panic(err)
 	}
@@ -37,6 +37,6 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
+	fmt.Fprintf(w, string(body)+"\n\nDecoded Data:\n")
 
-	fmt.Fprintf(w, string(body))
 }
