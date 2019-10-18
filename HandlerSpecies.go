@@ -9,9 +9,9 @@ import (
 // HandlerSpecies Handler for species GET
 func HandlerSpecies(w http.ResponseWriter, r *http.Request) {
 	parts := strings.Split(r.URL.Path, "/")
-	if len(parts) != 3 {
+	if len(parts) != 5 {
 		status := http.StatusBadRequest
-		http.Error(w, "Expecting format .../species", status)
+		http.Error(w, "Expecting format .../conservation/v1/species/", status)
 		return
 	}
 

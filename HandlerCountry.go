@@ -15,13 +15,13 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
 		parts := strings.Split(r.URL.Path, "/")
-		if len(parts) != 3 {
+		if len(parts) != 5 {
 			status := http.StatusBadRequest
-			http.Error(w, "Expecting format .../country/", status)
+			http.Error(w, "Expecting format .../conservation/v1/country/", status)
 			return
 		}
 		// Getting JSON from GBIF
-		getAPI := "http://api.gbif.org/v1/occurrence/search?country=" + parts[2] + "&limit=" + strconv.Itoa(Limit)
+		getAPI := "http://api.gbif.org/v1/occurrence/search?country=" + parts[4] + "&limit=" + strconv.Itoa(Limit)
 
 		Client := http.DefaultClient
 		resp := GetRequest(Client, getAPI)
@@ -33,7 +33,7 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Getting JSON from Restcountries
-		getAPI2 := "http://restcountries.eu/rest/v2/alpha/" + parts[2] + "?fields=name;alpha2Code;flag"
+		getAPI2 := "http://restcountries.eu/rest/v2/alpha/" + parts[4] + "?fields=name;alpha2Code;flag"
 		resp2 := GetRequest(Client, getAPI2)
 
 		var m RestCountryTmp
