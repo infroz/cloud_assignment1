@@ -15,7 +15,7 @@ func HandlerSpecies(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	speciesAPI := ""
+	//speciesAPI := ""
 
 	fmt.Fprintln(w, parts)
 }
