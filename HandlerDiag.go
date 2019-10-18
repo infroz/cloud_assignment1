@@ -20,8 +20,21 @@ func HandlerDiag(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
 		var d Diag
-		d.Gbif = 200          // FakeOK
-		d.Restcountries = 200 // FakeOK
+		// Get API Status
+
+		resp, err := http.Get("http://restcountries.eu/rest/v2/")
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		d.Gbif = resp.StatusCode
+
+		resp, err = http.Get("http://api.gbif.org/v1/")
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		d.Restcountries = resp.StatusCode // FakeOK
 		d.Version = "v1"
 		d.Uptime = int(Uptime())
 
