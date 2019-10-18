@@ -23,9 +23,9 @@ type RestGBIFTmp struct {
 
 // SpeciesByCountry Contains formated data for Species by Country
 type SpeciesByCountry struct {
-	Code         int `json:"alpha2Code"`
-	CountryName  string
-	CountryFlag  string
-	SpeciesArray [Limit]SpeciesStruct
-	SpeciesKeys  [Limit]SpeciesStruct
+	Code        string
+	CountryName string
+	CountryFlag string
+	Species     [Limit]string
+	SpeciesKey  [Limit]int
 }

@@ -16,6 +16,7 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Expecting format .../country/", status)
 		return
 	}
+	// Getting JSON from GBIF
 	getAPI := "http://api.gbif.org/v1/occurrence/search?country=" + parts[2] + "&limit=" + strconv.Itoa(Limit)
 
 	Client := http.DefaultClient
@@ -26,9 +27,38 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	for i:= 0; i < Limit; i++ {
-		log.Println(s.Results[i].Species)
+
+	// Getting JSON from Restcountries
+	getAPI2 := "http://restcountries.eu/rest/v2/alpha/"+parts[2]+"?fields=name;alpha2Code;flag"
+	resp2 := GetRequest(Client, getAPI2)
+
+	var m RestCountryTmp
+	err = json.NewDecoder(resp2.Body).Decode(&m)
+	if err != nil {
+		log.Fatalln(err)
 	}
+	log.Println(m.Name + " " + m.Alpha2Code + " " + m.Flag)
+
+	// Create new structure
+	var res SpeciesByCountry
+	res.Code = m.Alpha2Code
+	res.CountryName = m.Name
+	res.CountryFlag = m.Flag
+	for i:=0; i<Limit; i++ {
+		res.Species[i] = s.Results[i].Species
+		res.SpeciesKey[i] = s.Results[i].SpeciesKey
+	}
+
+	enc, err:= json.Marshal(res)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+
+	w.Header().Set("Content-Type","application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(enc)
+
 }
 
 // GetRequest - Comment
