@@ -29,3 +29,11 @@ type SpeciesByCountry struct {
 	Species     [Limit]string
 	SpeciesKey  [Limit]int
 }
+
+// Diag - Stores data for HandlerDiag
+type Diag struct {
+	Gbif          int
+	Restcountries int
+	version       string
+	uptime        int
+}

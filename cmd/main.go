@@ -6,9 +6,14 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 // -----------------
+
+func init() {
+	assignment1.StartTime = time.Now()
+}
 
 func main() {
 	port := os.Getenv("PORT")
