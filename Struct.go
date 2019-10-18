@@ -1,7 +1,7 @@
 package assignment1
 
 // Limit is the limit on searches from GBIF
-const Limit = 10
+const Limit = 100
 
 // SpeciesStruct Contains data for Species
 type SpeciesStruct struct {
