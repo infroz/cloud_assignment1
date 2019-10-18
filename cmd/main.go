@@ -10,7 +10,7 @@ import (
 )
 
 // -----------------
-
+// Sets system start time - used in uptime
 func init() {
 	assignment1.StartTime = time.Now()
 }
