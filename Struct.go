@@ -1,8 +1,31 @@
 package assignment1
 
-// CountryJSON - Datastructure for JSON from restcountries
-type CountryJSON struct {
-	Name       string `json:"name"`
-	Alpha2Code string `json:"alpha2Code"`
-	Flag       string `json:"flag"`
+// Limit is the limit on searches from GBIF
+const Limit = 10
+
+// SpeciesStruct Contains data for Species
+type SpeciesStruct struct {
+	SpeciesKey int
+	Species    string
+}
+
+// RestCountryTmp Collects temporary data from restCountry
+type RestCountryTmp struct {
+	Name       string
+	Alpha2Code string
+	Flag       string
+}
+
+// RestGBIFTmp Stores Results
+type RestGBIFTmp struct {
+	Results [Limit]SpeciesStruct
+}
+
+// SpeciesByCountry Contains formated data for Species by Country
+type SpeciesByCountry struct {
+	Code         int `json:"alpha2Code"`
+	CountryName  string
+	CountryFlag  string
+	SpeciesArray [Limit]SpeciesStruct
+	SpeciesKeys  [Limit]SpeciesStruct
 }
