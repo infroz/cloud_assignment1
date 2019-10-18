@@ -6,8 +6,10 @@ import (
 	"time"
 )
 
+// StartTime - Set by init() in main.go
 var StartTime time.Time
 
+// Uptime - Returns times in seconds since service start
 func Uptime() time.Duration {
 	return time.Since(StartTime)
 }
