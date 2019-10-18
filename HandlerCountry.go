@@ -41,7 +41,6 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Fatalln(err)
 		}
-		log.Println(m.Name + " " + m.Alpha2Code + " " + m.Flag)
 
 		// Create new structure
 		var res SpeciesByCountry
