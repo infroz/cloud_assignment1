@@ -51,6 +51,7 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 			res.SpeciesKey[i] = s.Results[i].SpeciesKey
 		}
 
+		// Encode new structure to JSON format
 		enc, err:= json.Marshal(res)
 		if err != nil {
 			log.Fatalln(err)
@@ -61,6 +62,7 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write(enc)
 	default:
+		// For any other method than GET - undefined
 		http.Error(w, "not implemented yet", http.StatusNotImplemented)
 		return
 	}
