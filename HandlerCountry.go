@@ -1,11 +1,13 @@
 package assignment1
 
+// I have used log instead of fmt since I think it is more readable
+
 import (
+	"encoding/json"
 	"log"
 	"net/http"
-	"strings"
-	"encoding/json"
 	"strconv"
+	"strings"
 )
 
 // HandlerCountry - This function handles country requests
@@ -31,7 +33,7 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Getting JSON from Restcountries
-		getAPI2 := "http://restcountries.eu/rest/v2/alpha/"+parts[2]+"?fields=name;alpha2Code;flag"
+		getAPI2 := "http://restcountries.eu/rest/v2/alpha/" + parts[2] + "?fields=name;alpha2Code;flag"
 		resp2 := GetRequest(Client, getAPI2)
 
 		var m RestCountryTmp
@@ -46,19 +48,19 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 		res.Code = m.Alpha2Code
 		res.CountryName = m.Name
 		res.CountryFlag = m.Flag
-		for i:=0; i<Limit; i++ {
+		for i := 0; i < Limit; i++ {
 			res.Species[i] = s.Results[i].Species
 			res.SpeciesKey[i] = s.Results[i].SpeciesKey
 		}
 
 		// Encode new structure to JSON format
-		enc, err:= json.Marshal(res)
+		enc, err := json.Marshal(res)
 		if err != nil {
 			log.Fatalln(err)
 		}
 
 		// Gives JSON response for requests
-		w.Header().Set("Content-Type","application/json")
+		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write(enc)
 	default:
