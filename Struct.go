@@ -34,6 +34,6 @@ type SpeciesByCountry struct {
 type Diag struct {
 	Gbif          int
 	Restcountries int
-	version       string
-	uptime        int
+	Version       string
+	Uptime        int
 }
