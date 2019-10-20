@@ -40,7 +40,7 @@ func HandlerSpecies(w http.ResponseWriter, r *http.Request) {
 			log.Fatalln(err)
 		}
 
-		// Sets values for SpecificSpecies
+		// Sets values for JSON response
 		var response SpecificSpecies
 		response.Key = s.Key
 		response.Kingdom = s.Kingdom
