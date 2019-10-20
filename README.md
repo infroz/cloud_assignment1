@@ -1,50 +1,27 @@
 # Assignment 1 for Cloud Technologies at NTNU Gjøvik
+## Task Description
+In this assignment, you are going to develop a REST web application in Golang that provides the client to retrieve information about animal species. For this purpose, you will interrogate an existing web service and return the result in a given output format.
 
-## Hvordan vi jobber
+The REST web service you will be using is the [Global Biodiversity Information Facility](https://www.gbif.org/what-is-gbif), GBIF. It is based on open standards and open access, and it allows the client to query various aspects of Earth's biodiversity.
 
-Master branchen er låst fra å pushe direkte til denne. Jeg har satt det opp slik at vi oppretter separate brancher for hver oppgave, og merger denne inn via pull request - da er det også anledning for å diskutere og kommentere kodeendringer i pull requesten, før de merges inn i masterbranchen. Slik kan vi passe på at vi ikke roter ting til selv om vi jobber parallellt, samt at vi kan gjøre koden bedre gjennom å sjekke hverandre.
+[The documentation of GBIF is available online](https://www.gbif.org/developer/summary). To use the GBIF web service through GET requests you do **not** need an API token! Nevertheless, be **mindful of rate limits** - we will talk about mitigation strategies in class.
 
-Når du skal jobbe med en oppgave eller problem, opprett en lokal branch med:
+In addition to the information provided by the GBIF database, you will need to use the [restcountries.eu](https://restcountries.eu) API for obtaining information about countries and their capitals, country codes, currency, etc.
 
-```git checkout -b branch-navn```
+The final web service should be deployed on Heroku. The initial development should occur on your local machine. For the submission, you will both need to provide a URL to the deployed Heroku service as well as your repository.
+## Heroku
+This application has been deployed on Heroku 
+Link to Heroku [https://lit-garden-19973.herokuapp.com/](https://lit-garden-19973.herokuapp.com/ "https://lit-garden-19973.herokuapp.com/")
 
-Git oppretter den lokale branchen utfra den branchen man er i (typisk master), og bytter automatisk over til den. Her kan du gjøre endringer, og committe som ellers med:
+## How to use the API
 
-```git commit -am "oppsummering av endring"```
+host:port/conservation/v1/
+												
+Method GET
+ - country/{Alpha2Code for a country}
+	 - Returns data on a given country in JSON format
+ - diag/
+	 - Returns status code on API's used by this Rest application. Also gives uptime in seconds JSON format
+ - species/
+	 - Returns data on a given specieskey JSON formt
 
-Commit ofte, så kan man lettere gå tilbake dersom noe har fucka seg. For å stille tilbake repoet til den nyligste commiten (sett at man ikke har committet tabben man har gjort) gjør man:
-
-```git checkout -- .```
-
-Legg merke til punktumet. Må gjøres i root-mappen.
-
-
-## Opplasting av lokal branch
-
-Det kan være greit å jobbe på samme branch, og da må man laste denne opp til bitbucket. Dette må man også gjøre uansett, når det er klart for å lage et pull-request til master branchen. Da gjør man:
-
-```git push --set-upstream origin branch-navn```
-
-Bruker du git bash, kan man stort sett påbegynne ord, og trykke TAB, og så completer shellet for deg. Etter dette opprettes den samme branchen i bitbucket, og man kan pulle og pushe til denne som ellers med git.
-
-## Hvordan checkout'e en remote branch opprettet av noen andre
-```
-git fetch
-git checkout branch-navn
-```
-
-## Pull-request
-
-Når koden i en branch er klar for å inkluderes i master, oppretter man et pull-request, og da bør minst en annen av oss gå over koden, før den inkluderes eller endres videre. Man kan fortsette å pulle og pushe til branchen, og pull-requesten vil være oppdatert. Til slutt merger man pull requesten og sletter branchen (dette vil jeg gjøre ihvertfall i starten, så tar vi evt en seanse på det når jeg kommer på land igjen, slik at alle er gode på det).
-
-Opprettelse av pull-requests kan gjøres via commandovinduet, men jeg er ikke komfortabel med det, og den grafiske løsningen på bitbucket er ganske egnet for det. Når du har lastet opp en lokal branch, finner du den i repoet, under branches, derfra kan man klikke på linken "Create" helt til høyre i tabellen (under "pull request" kollonnen).
-
-Vinduet som kommer opp er ganske selvforklarende. Feltet "reviewers" er hvor man kan assigne en av de andre til å reviewe koden, men jeg tror ikke vi trenger å tenke på å gjøre det så formelt siden vi er bare tre. Default-tittelen er ofte grei, men etterhvert som kodebasen blir litt større kan det være lurt å legge litt arbeid i tittel og beskrivelse her.
-
-### Å sette sitt "stamp of approval" på en pull request
-
-Når du har gått over en annens pull request, og er fornøyd, klikker du knappen "approve" øverst til høyre for tittelen, for å vise at du har sett over og syns den er klar for å gå inn i master. (obs: jeg er usikker på hvordan denne tilgangen er, men tror alle skal kunne klikke på denne. Si fra om ikke)
-
-## Ellers
-
-Dersom det ellers oppstår problemer, eller kommandoer vi har bruk for, som ikke allerede er dekket her, endrer vi dette dokumentet.
