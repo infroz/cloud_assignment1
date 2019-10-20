@@ -37,7 +37,7 @@ type Diag struct {
 
 // SpecificSpecies Contains formated data for /species/
 type SpecificSpecies struct {
-	Key            string
+	Key            int
 	Kingdom        string
 	Phylum         string
 	Order          string
@@ -45,5 +45,23 @@ type SpecificSpecies struct {
 	Genus          string
 	ScientificName string
 	CanonicalName  string
-	Year           string
+	Year           string // Get from /species/{key}/name
+}
+
+// SpecificSpeciesTmp Stores data for species
+type SpecificSpeciesTmp struct {
+	Key            int
+	Kingdom        string
+	Phylum         string
+	Order          string
+	Family         string
+	Genus          string
+	ScientificName string
+	CanonicalName  string
+}
+
+// SpecificSpeciesYearTmp Temporary stores info for species
+type SpecificSpeciesYearTmp struct {
+	BracketYear string // Get from /species/{key}/name
+
 }
