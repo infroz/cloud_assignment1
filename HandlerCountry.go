@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"strconv"
 	"strings"
 )
 
@@ -20,8 +19,14 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Expecting format .../conservation/v1/country/", status)
 			return
 		}
+
+		Limit := r.URL.Query().Get("limit")
+		if Limit == "" {
+			Limit = "30"
+		}
+
 		// Getting JSON from GBIF
-		getAPI := "http://api.gbif.org/v1/occurrence/search?country=" + parts[4] + "&limit=" + strconv.Itoa(Limit)
+		getAPI := "http://api.gbif.org/v1/occurrence/search?country=" + parts[4] + "&limit=" + Limit
 
 		Client := http.DefaultClient
 		resp := GetRequest(Client, getAPI)
@@ -47,9 +52,9 @@ func HandlerCountry(w http.ResponseWriter, r *http.Request) {
 		res.Code = m.Alpha2Code
 		res.CountryName = m.Name
 		res.CountryFlag = m.Flag
-		for i := 0; i < Limit; i++ {
-			res.Species[i] = s.Results[i].Species
-			res.SpeciesKey[i] = s.Results[i].SpeciesKey
+		for i := range s.Results {
+			res.Species = append(res.Species, s.Results[i].Species)
+			res.SpeciesKey = append(res.SpeciesKey, s.Results[i].SpeciesKey)
 		}
 
 		// Encode new structure to JSON format

@@ -1,8 +1,5 @@
 package assignment1
 
-// Limit is the limit on searches from GBIF
-const Limit = 100
-
 // SpeciesStruct Contains data for Species
 type SpeciesStruct struct {
 	SpeciesKey int
@@ -18,7 +15,7 @@ type RestCountryTmp struct {
 
 // RestGBIFTmp Stores Results
 type RestGBIFTmp struct {
-	Results [Limit]SpeciesStruct
+	Results []SpeciesStruct
 }
 
 // SpeciesByCountry Contains formated data for Species by Country
@@ -26,8 +23,8 @@ type SpeciesByCountry struct {
 	Code        string
 	CountryName string
 	CountryFlag string
-	Species     [Limit]string
-	SpeciesKey  [Limit]int
+	Species     []string
+	SpeciesKey  []int
 }
 
 // Diag - Stores data for HandlerDiag
