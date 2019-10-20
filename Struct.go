@@ -34,3 +34,16 @@ type Diag struct {
 	Version       string
 	Uptime        int
 }
+
+// SpecificSpecies Contains formated data for /species/
+type SpecificSpecies struct {
+	Key            string
+	Kingdom        string
+	Phylum         string
+	Order          string
+	Family         string
+	Genus          string
+	ScientificName string
+	CanonicalName  string
+	Year           string
+}
